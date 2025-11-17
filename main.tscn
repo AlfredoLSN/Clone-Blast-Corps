@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://be375e58t2e6l"]
+
+[ext_resource type="Script" uid="uid://po1yy65712jt" path="res://path_follow_2d.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://bv21kk0km1rc" path="res://icon.svg" id="1_ig7tw"]
+
+[sub_resource type="Curve2D" id="Curve2D_7dm0k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 67, 60, 0, 0, 0, 0, 67, 595, 0, 0, 0, 0, 1037, 585, 0, 0, 0, 0, 1037, 57, 0, 0, 0, 0, 67, 60)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(130, 128)
+
+[node name="Main" type="Node"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_7dm0k")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(67, 60)
+rotation = 1.5707964
+script = ExtResource("1_0xm2m")
+speed = 600.0
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D"]
+modulate = Color(0, 1, 0, 1)
+texture = ExtResource("1_ig7tw")

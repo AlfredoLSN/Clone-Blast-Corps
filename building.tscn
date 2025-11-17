@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnigaqa3hoqrb"]
+
+[ext_resource type="Texture2D" uid="uid://bv21kk0km1rc" path="res://icon.svg" id="2_f1gjg"]
+
+[sub_resource type="GDScript" id="GDScript_5j34s"]
+script/source = "extends StaticBody2D
+
+@export var health = 100.0
+
+func take_damage(amount):
+	health -= amount
+	print(\"Vida do prédio: \", health) # Para debug
+	
+	# Efeito visual simples: piscar vermelho
+	$Sprite2D.modulate = Color(1, 0, 0) 
+	await get_tree().create_timer(0.1).timeout
+	$Sprite2D.modulate = Color(1, 1, 1)
+	
+	if health <= 0:
+		die()
+
+func die():
+	# Aqui você pode instanciar uma explosão antes de apagar
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnfc1"]
+size = Vector2(126, 128)
+
+[node name="Building" type="StaticBody2D" groups=["obstaculos"]]
+modulate = Color(1, 0, 1, 1)
+script = SubResource("GDScript_5j34s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_f1gjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qnfc1")

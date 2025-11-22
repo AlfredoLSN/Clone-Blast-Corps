@@ -1,33 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://be375e58t2e6l"]
+[gd_scene load_steps=7 format=3 uid="uid://be375e58t2e6l"]
 
-[ext_resource type="Script" uid="uid://po1yy65712jt" path="res://path_follow_2d.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://bv21kk0km1rc" path="res://icon.svg" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cpbju6jx0xdv2" path="res://path_follow_2d.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bnigaqa3hoqrb" path="res://building.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c5nf542k6cnsb" path="res://player.tscn" id="3_h2yge"]
 
-[sub_resource type="Curve2D" id="Curve2D_7dm0k"]
+[sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 67, 60, 0, 0, 0, 0, 67, 595, 0, 0, 0, 0, 1037, 585, 0, 0, 0, 0, 1037, 57, 0, 0, 0, 0, 67, 60)
+"points": PackedVector2Array(0, 0, 0, 0, 16, 21, 0, 0, 0, 0, 151, 544, 0, 0, 0, 0, 332, 127, 0, 0, 0, 0, 589, 115, 0, 0, 0, 0, 425, 442, 0, 0, 0, 0, 638, 622, 0, 0, 0, 0, 704, 294, 0, 0, 0, 0, 653, 55, 0, 0, 0, 0, 874, 74, 0, 0, 0, 0, 1144, 645)
 }
-point_count = 5
+point_count = 10
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(130, 128)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ig7tw"]
+size = Vector2(50, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(51.067978, 30.79741)
 
 [node name="Main" type="Node"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34033912, 0.34033936, 0.3403393, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_h2yge")]
+
 [node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_7dm0k")
+curve = SubResource("Curve2D_ig7tw")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(67, 60)
-rotation = 1.5707964
+position = Vector2(16, 21)
+rotation = 1.3181843
+loop = false
 script = ExtResource("1_0xm2m")
-speed = 600.0
 
 [node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
-shape = SubResource("RectangleShape2D_0xm2m")
-
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D"]
-modulate = Color(0, 1, 0, 1)
-texture = ExtResource("1_ig7tw")
+modulate = Color(1, 1, 0, 1)
+texture = SubResource("PlaceholderTexture2D_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+position = Vector2(0.4221096, 0.12496567)
+scale = Vector2(1.0000005, 1.0000005)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="Building2" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(98, 361)
+
+[node name="Building3" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(527, 245)
+
+[node name="Building4" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(634, 600)
+
+[node name="Building5" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(653, 57)
+
+[node name="Building6" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(972, 272)
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="Path2D/PathFollow2D" method="_on_area_2d_body_entered"]

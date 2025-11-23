@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://be375e58t2e6l"]
+[gd_scene load_steps=11 format=3 uid="uid://be375e58t2e6l"]
 
 [ext_resource type="Script" uid="uid://cpbju6jx0xdv2" path="res://path_follow_2d.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bnigaqa3hoqrb" path="res://building.tscn" id="3_1bvp3"]
@@ -11,10 +11,20 @@ _data = {
 point_count = 10
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ig7tw"]
-size = Vector2(50, 30)
+size = Vector2(90, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(51.067978, 30.79741)
+size = Vector2(90.23724, 49.822006)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2yge"]
+distance = -647.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7mycd"]
+distance = -1151.0
 
 [node name="Main" type="Node"]
 
@@ -45,7 +55,7 @@ modulate = Color(1, 1, 0, 1)
 texture = SubResource("PlaceholderTexture2D_ig7tw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
-position = Vector2(0.4221096, 0.12496567)
+position = Vector2(-0.23419571, 0.07683182)
 scale = Vector2(1.0000005, 1.0000005)
 shape = SubResource("RectangleShape2D_ig7tw")
 
@@ -63,5 +73,22 @@ position = Vector2(653, 57)
 
 [node name="Building6" parent="." instance=ExtResource("3_1bvp3")]
 position = Vector2(972, 272)
+
+[node name="LimiteMapa" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimiteMapa"]
+shape = SubResource("WorldBoundaryShape2D_h2yge")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LimiteMapa"]
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_1bvp3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LimiteMapa"]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_lquwl")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="LimiteMapa"]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_7mycd")
 
 [connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="Path2D/PathFollow2D" method="_on_area_2d_body_entered"]

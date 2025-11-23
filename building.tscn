@@ -7,20 +7,20 @@ var hp = 100
 
 func take_damage(amount):
 	hp -= amount
-	# Feedback visual: Fica vermelho ao bater
+	
 	$Sprite2D.modulate = Color(1, 0, 0) 
 	await get_tree().create_timer(0.1).timeout
-	$Sprite2D.modulate = Color(0.6, 0.4, 0.2, 1.0) # Volta para marrom (ajuste a cor se quiser)
+	$Sprite2D.modulate = Color(0.6, 0.4, 0.2, 1.0)
 	
 	if hp <= 0:
-		queue_free() # Destrói o objeto
+		queue_free() #vai destruir esse objeto quando do mapa 
 "
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rqn35"]
-size = Vector2(64, 64)
+size = Vector2(150, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqn35"]
-size = Vector2(64, 64)
+size = Vector2(150, 80)
 
 [node name="Building" type="StaticBody2D" groups=["obstaculos"]]
 modulate = Color(1, 0, 1, 1)

@@ -5,37 +5,43 @@
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 script/source = "extends CharacterBody2D
 
-var speed = 400.0
-var acceleration = 800.0
-var friction = 800.0
+@export var speed = 400.0
+@export var acceleration = 800.0
+@export var friction = 800.0
 
+var can_damage = true
 func _physics_process(delta):
 	var direction = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
 
 	if direction:
 		velocity = velocity.move_toward(direction * speed, acceleration * delta)
-		print(\"Velcoidade: \", velocity)
-		rotation = velocity.angle() # Gira o trator
+		rotation = velocity.angle() # vai girar o jogador com base no movimento
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-
+		
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta) 
+	
+	var velocidade_impacto = velocity
+	
 	move_and_slide()
 
-	# Detectar colisão
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 
 		if collider.is_in_group(\"obstaculos\"):
-			# Dano baseado na velocidade atual
+			# Velocidade minima para o dano funcionar
+			if velocidade_impacto.length() > 250:
+	
+				var damage = velocidade_impacto.length() * 0.08
 			
-			var damage = velocity.length() * 0.2
-			if collider.has_method(\"take_damage\"):
-				collider.take_damage(damage)
+				if collider.has_method(\"take_damage\"):
+					print(\"Damagage: \", damage)
+					print(\"velocidade: \", velocidade_impacto.length())
+					collider.take_damage(damage)
 				
 
-			# Pulo para trás (impacto)
-			velocity = velocity.bounce(collision.get_normal()) * 0.5
+			# Vai jogar o jogador para tras ao colidir
+			velocity = velocidade_impacto.bounce(collision.get_normal()) * 0.5
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]

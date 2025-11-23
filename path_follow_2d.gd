@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-var speed = 60.0 # Velocidade constante
+@export var speed = 60.0 
 var is_game_over = false
 
 func _process(delta):

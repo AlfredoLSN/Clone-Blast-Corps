@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://be375e58t2e6l"]
+[gd_scene load_steps=12 format=3 uid="uid://be375e58t2e6l"]
 
 [ext_resource type="Script" uid="uid://cpbju6jx0xdv2" path="res://path_follow_2d.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://ccgiy1i35ln84" path="res://path_2d.gd" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bnigaqa3hoqrb" path="res://building.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c5nf542k6cnsb" path="res://player.tscn" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cj0n0o5d7ios6" path="res://caminhaoPixel.png" id="3_lquwl"]
@@ -35,11 +36,17 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.34033912, 0.34033936, 0.3403393, 1)
 
-[node name="Player" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(371, 263)
-
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_ig7tw")
+script = ExtResource("2_lquwl")
+
+[node name="Line2D" type="Line2D" parent="Path2D"]
+scale = Vector2(1.0000001, 1.0000001)
+width = 100.0
+default_color = Color(0.48535377, 0.2876874, 0.037930787, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(16, 21)
@@ -59,6 +66,9 @@ texture = ExtResource("3_lquwl")
 position = Vector2(4.288986, -11.192986)
 scale = Vector2(1.0000005, 1.0000005)
 shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="Player" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(371, 263)
 
 [node name="Building2" parent="." instance=ExtResource("3_1bvp3")]
 position = Vector2(98, 361)

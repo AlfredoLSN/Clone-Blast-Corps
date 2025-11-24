@@ -38,6 +38,7 @@ mouse_filter = 2
 color = Color(0.34033912, 0.34033936, 0.3403393, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(371, 263)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_ig7tw")

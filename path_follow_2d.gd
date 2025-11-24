@@ -4,17 +4,13 @@ extends PathFollow2D
 var is_game_over = false
 
 func _process(delta):
-	if not is_game_over:
 		progress += speed * delta
 		
 		if progress_ratio >= 1.0:
-			print("VITÓRIA! Caminhão salvo.")
-			is_game_over = true
+			get_tree().change_scene_to_file("res://Vitoria.tscn")
 
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("obstaculos"):
-		print("DERROTA! Cabum.")
-		is_game_over = true
-		speed = 0
+		get_tree().change_scene_to_file("res://gameOver.tscn")

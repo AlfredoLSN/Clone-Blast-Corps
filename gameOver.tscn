@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgk5u61xsi8l"]
+
+[ext_resource type="Script" uid="uid://brg377pgjvpwg" path="res://game_over.gd" id="1_xlotp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_34ryk"]
+font_size = 64
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xlotp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.708002
+anchor_bottom = 16.138
+offset_left = 384.0
+offset_top = 232.0
+offset_right = -336.32007
+offset_bottom = -280.52002
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_34ryk")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 384.0
+offset_right = 680.0
+offset_bottom = 434.0
+text = "Tentar Novamente"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

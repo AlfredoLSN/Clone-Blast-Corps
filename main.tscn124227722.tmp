@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cpbju6jx0xdv2" path="res://path_follow_2d.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bnigaqa3hoqrb" path="res://building.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c5nf542k6cnsb" path="res://player.tscn" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://cj0n0o5d7ios6" path="res://caminhaoPixel.png" id="3_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
@@ -11,8 +10,11 @@ _data = {
 }
 point_count = 10
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ig7tw"]
+size = Vector2(90, 50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(1172.0975, 462.208)
+size = Vector2(90.23724, 49.822006)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2yge"]
 distance = -647.0
@@ -48,15 +50,13 @@ loop = false
 script = ExtResource("1_0xm2m")
 
 [node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
-scale = Vector2(0.12, 0.12)
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D"]
 modulate = Color(1, 1, 0, 1)
-rotation = 3.1415927
-texture = ExtResource("3_lquwl")
+texture = SubResource("PlaceholderTexture2D_ig7tw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
-position = Vector2(4.288986, -11.192986)
+position = Vector2(-0.23419571, 0.07683182)
 scale = Vector2(1.0000005, 1.0000005)
 shape = SubResource("RectangleShape2D_ig7tw")
 
@@ -73,26 +73,7 @@ position = Vector2(634, 600)
 position = Vector2(653, 57)
 
 [node name="Building6" parent="." instance=ExtResource("3_1bvp3")]
-visible = false
 position = Vector2(972, 272)
-
-[node name="Building7" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(269, 253)
-
-[node name="Building8" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(441, 122)
-
-[node name="Building9" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(487, 489)
-
-[node name="Building10" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(700, 280)
-
-[node name="Building11" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(930, 184)
-
-[node name="Building12" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(1089, 538)
 
 [node name="LimiteMapa" type="StaticBody2D" parent="."]
 

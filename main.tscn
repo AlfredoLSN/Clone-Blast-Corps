@@ -60,6 +60,7 @@ scale = Vector2(0.12, 0.12)
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D"]
 modulate = Color(1, 1, 0, 1)
 rotation = 3.1415927
+scale = Vector2(1, -1)
 texture = ExtResource("3_lquwl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
@@ -69,6 +70,7 @@ shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="Player" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(371, 263)
+rotation = 1.5707964
 
 [node name="Building2" parent="." instance=ExtResource("3_1bvp3")]
 position = Vector2(98, 361)
@@ -80,11 +82,10 @@ position = Vector2(527, 245)
 position = Vector2(634, 600)
 
 [node name="Building5" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(653, 57)
+position = Vector2(754, 70)
 
 [node name="Building6" parent="." instance=ExtResource("3_1bvp3")]
-visible = false
-position = Vector2(972, 272)
+position = Vector2(1011, 347)
 
 [node name="Building7" parent="." instance=ExtResource("3_1bvp3")]
 position = Vector2(269, 253)

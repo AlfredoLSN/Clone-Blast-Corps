@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5nf542k6cnsb"]
 
-[ext_resource type="Texture2D" uid="uid://bv21kk0km1rc" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://dgpnyabve0gem" path="res://trator2.png" id="1_4flbx"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 script/source = "extends CharacterBody2D
@@ -45,16 +45,17 @@ func _physics_process(delta):
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
-size = Vector2(64, 64)
+size = Vector2(77, 44)
 
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_4flbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(-0.22, -0.22)
 texture = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, 2)
 shape = SubResource("RectangleShape2D_4flbx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
